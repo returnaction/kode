@@ -1,7 +1,9 @@
 package com.nikita.restaurantservice.controller;
 
+import com.nikita.restaurantservice.model.dto.MenuDto;
 import com.nikita.restaurantservice.model.dto.RestaurantCreateRequestDto;
 import com.nikita.restaurantservice.model.dto.RestaurantDto;
+import com.nikita.restaurantservice.service.impl.MenuService;
 import com.nikita.restaurantservice.service.impl.RestaurantService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,9 @@ import java.util.UUID;
 public class RestaurantController {
 
     private final RestaurantService restaurantService;
+    private final MenuService menuService;
+
+    /// Restaurant
 
     @PostMapping
     public ResponseEntity<RestaurantDto> createRestaurant(@RequestBody @Valid RestaurantCreateRequestDto request) {
@@ -47,5 +52,11 @@ public class RestaurantController {
     @PutMapping("{id}")
     public ResponseEntity<RestaurantDto> updateRestaurant(@PathVariable UUID id, @RequestBody @Valid RestaurantDto request) {
         return restaurantService.updateRestaurant(id, request);
+    }
+
+    /// Menu
+    @PostMapping("/{restaurant_id}/menu")
+    public ResponseEntity<MenuDto> createMenu(@PathVariable UUID restaurant_id, @RequestBody @Valid MenuDto request) {
+        return menuService.createMenu(restaurant_id, request);
     }
 }
