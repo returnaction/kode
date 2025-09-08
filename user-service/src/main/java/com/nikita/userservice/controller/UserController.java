@@ -35,6 +35,8 @@ public class UserController {
         return userServiceImpl.getUserById(id);
     }
 
+    // TODO получить юзера по телефону???
+
     @GetMapping("/{id}/with-addresses")
     public ResponseEntity<UserWithAddressesDto> getUserByIdWithAddresses(@PathVariable UUID id) {
         return userServiceImpl.getUserByIdWithAddresses(id);

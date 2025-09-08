@@ -19,12 +19,12 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl {
-
+    //TODO не забудь сделать интерфейс для сервиса и в контролер пихать уже интерфейс
     private final UserRepository userRepository;
 
     public ResponseEntity<UserDto> register(@Valid UserCreateRequestDto request) {
         if(userRepository.existsByPhone(request.getPhone())){
-            throw new IllegalArgumentException("Phone number already exists");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Phone number already exists");
         }
 
         // TODO может лучше не делать статический метод его потом будет тяжело тестировать???
