@@ -2,7 +2,10 @@ package com.nikita.restaurantservice.mapper;
 
 import com.nikita.restaurantservice.model.dto.RestaurantCreateRequestDto;
 import com.nikita.restaurantservice.model.dto.RestaurantDto;
+import com.nikita.restaurantservice.model.dto.RestaurantWithMenuDto;
 import com.nikita.restaurantservice.model.entity.RestaurantEntity;
+
+import java.util.stream.Collectors;
 
 public class RestaurantMapper {
     public static RestaurantEntity toRestaurantEntity(RestaurantCreateRequestDto dto) {
@@ -21,6 +24,21 @@ public class RestaurantMapper {
                 .city(entity.getCity())
                 .address(entity.getAddress())
                 .phone(entity.getPhone())
+                .build();
+    }
+
+    public static RestaurantWithMenuDto toDtoWithMenu(RestaurantEntity entity) {
+        return RestaurantWithMenuDto.builder()
+                .id(entity.getId())
+                .name(entity.getName())
+                .city(entity.getCity())
+                .address(entity.getAddress())
+                .phone(entity.getPhone())
+                .menu(
+                        entity.getMenu().stream()
+                                .map(MenuMapper::toDto)
+                                .collect(Collectors.toList())
+                )
                 .build();
     }
 }

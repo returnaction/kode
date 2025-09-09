@@ -4,7 +4,7 @@ import com.nikita.restaurantservice.model.dto.MenuDto;
 import com.nikita.restaurantservice.model.entity.MenuEntity;
 
 public class MenuMapper {
-    public static MenuDto toMenuDto(MenuEntity menu) {
+    public static MenuDto toDto(MenuEntity menu) {
        return MenuDto.builder()
                 .id(menu.getId())
                 .name(menu.getName())
@@ -14,7 +14,7 @@ public class MenuMapper {
                 .build();
     }
 
-    public static MenuEntity toMenuEntity(MenuDto menuDto) {
+    public static MenuEntity toEntity(MenuDto menuDto) {
         return MenuEntity.builder()
                 .name(menuDto.getName())
                 .price(menuDto.getPrice())
