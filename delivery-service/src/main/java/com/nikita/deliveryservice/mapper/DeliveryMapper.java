@@ -8,7 +8,7 @@ public class DeliveryMapper {
         return DeliveryDto.builder()
                 .deliveryId(entity.getDeliveryId())
                 .orderId(entity.getOrderId())
-                .courier(CourierMapper.toDto(entity.getCourier()))
+                .courier(entity.getCourier() != null ? CourierMapper.toDto(entity.getCourier()) : null)
                 .status(entity.getStatus())
                 .coordinateX(entity.getCoordinateX())
                 .coordinateY(entity.getCoordinateY())

@@ -45,5 +45,8 @@ public class DeliveryController {
         return deliveryService.updateDeliveryStatus(deliveryId, courierId, status);
     }
 
-    //TODO потом сделать что бы курьер могу отменить уже взятый заказ и заказ отменялся
+    //TODO подумать как отправить координаты с помощью Scheduler может? Такую заглушку
+
+    //TODO CompleteOrder
+
 }
