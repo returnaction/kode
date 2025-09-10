@@ -1,5 +1,6 @@
 package com.nikita.orderservice.model.dto;
 
+import com.nikita.orderservice.model.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,9 +15,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class OrderRequestDto {
+public class OrderResponseDto {
+    private UUID orderId;
     private UUID userId;
     private String address;
     private Double amount;
-    private List<OrderItemRequestDto> items;
+    private Status status;
+    private List<OrderItemResponseDto> items;
 }

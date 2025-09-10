@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class OrderItemDto {
+public class OrderItemRequestDto {
     private UUID menuId;
     private String name;
     private Double price;

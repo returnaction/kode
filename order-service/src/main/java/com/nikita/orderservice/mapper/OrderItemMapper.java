@@ -1,0 +1,28 @@
+package com.nikita.orderservice.mapper;
+
+import com.nikita.orderservice.model.dto.OrderItemRequestDto;
+import com.nikita.orderservice.model.dto.OrderItemResponseDto;
+import com.nikita.orderservice.model.entity.OrderEntity;
+import com.nikita.orderservice.model.entity.OrderItemEntity;
+
+public class OrderItemMapper {
+    public static OrderItemEntity toEntity(OrderItemRequestDto dto, OrderEntity orderDto) {
+        return OrderItemEntity.builder()
+                .menuId(dto.getMenuId())
+                .name(dto.getName())
+                .price(dto.getPrice())
+                .quantity(dto.getQuantity())
+                .order(orderDto)
+                .build();
+    }
+
+    public static OrderItemResponseDto toDtoResponse(OrderItemEntity entity){
+        return OrderItemResponseDto.builder()
+                .orderItemId(entity.getOrderItemId())
+                .menuId(entity.getMenuId())
+                .name(entity.getName())
+                .price(entity.getPrice())
+                .quantity(entity.getQuantity())
+                .build();
+    }
+}
