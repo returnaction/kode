@@ -1,6 +1,7 @@
 package com.nikita.paymentservice.service;
 
 import com.nikita.paymentservice.mapper.PaymentMapper;
+import com.nikita.paymentservice.model.Status;
 import com.nikita.paymentservice.model.dto.PaymentDto;
 import com.nikita.paymentservice.model.entity.PaymentEntity;
 import com.nikita.paymentservice.repository.PaymentRepository;
@@ -22,6 +23,7 @@ public class PaymentService {
     @Transactional
     public ResponseEntity<PaymentDto> createPayment(PaymentDto request) {
         PaymentEntity entity = PaymentMapper.toEntity(request);
+        entity.setStatus(Status.PAID);
         entity = paymentRepository.save(entity);
         PaymentDto dto = PaymentMapper.toDto(entity);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
@@ -32,6 +34,18 @@ public class PaymentService {
         PaymentEntity payment = paymentRepository.findById(paymentId).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Платеж не найден"));
         PaymentDto dto = PaymentMapper.toDto(payment);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+    }
+
+    @Transactional
+    public ResponseEntity<PaymentDto> updatePaymentStatus(UUID paymentId, UUID userId, Status status) {
+        PaymentEntity payment = paymentRepository.findById(paymentId).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Платеж не найден"));
+        if(!payment.getUserId().equals(userId))
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Платеж не принадлежит данному пользователю");
+        payment.setStatus(status);
+        PaymentEntity saved = paymentRepository.save(payment);
+        PaymentDto dto = PaymentMapper.toDto(saved);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 }

@@ -18,6 +18,7 @@ public class PaymentMapper {
                 .userId(entity.getUserId())
                 .orderId(entity.getOrderId())
                 .amount(entity.getAmount())
+                .status(entity.getStatus())
                 .build();
     }
 }

@@ -1,5 +1,6 @@
 package com.nikita.paymentservice.model.dto;
 
+import com.nikita.paymentservice.model.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,4 +19,5 @@ public class PaymentDto {
     private UUID userId;
     private UUID orderId;
     private Double amount;
+    private Status status;
 }

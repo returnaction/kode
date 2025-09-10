@@ -1,7 +1,10 @@
 package com.nikita.paymentservice.model.entity;
 
+import com.nikita.paymentservice.model.Status;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -29,10 +32,17 @@ public class PaymentEntity {
 
     //TODO добавить валидацию
     //TODO добавить createdtAt updatedAt
+
     @Column(nullable = false)
     private UUID userId;
+
     @Column(nullable = false)
     private UUID orderId;
+
     @Column(nullable = false)
     private Double amount;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Status status;
 }
