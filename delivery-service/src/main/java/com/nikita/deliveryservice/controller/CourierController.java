@@ -1,8 +1,7 @@
 package com.nikita.deliveryservice.controller;
 
-import com.nikita.deliveryservice.model.dto.CourierDto;
-import com.nikita.deliveryservice.model.dto.CourierRequestDto;
-import com.nikita.deliveryservice.model.entity.courier.CourierEntity;
+import com.nikita.deliveryservice.model.dto.courier.CourierDto;
+import com.nikita.deliveryservice.model.dto.courier.CourierRequestDto;
 import com.nikita.deliveryservice.service.CourierService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -43,4 +42,5 @@ public class CourierController {
     public ResponseEntity<CourierDto> updateCourier(@PathVariable UUID courierId, @RequestBody CourierDto request) {
         return courierService.updateCourier(courierId, request);
     }
+
 }

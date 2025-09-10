@@ -57,6 +57,7 @@ public class UserEntity {
     @UpdateTimestamp
     private Instant updateAt = Instant.now();
 
+    //TODO это помоему не надо удалить потом, у нас автоматом обновляется
     @PreUpdate
     public void onUpdate() {
         this.updateAt = Instant.now();

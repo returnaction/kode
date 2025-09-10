@@ -1,8 +1,8 @@
 package com.nikita.deliveryservice.service;
 
 import com.nikita.deliveryservice.mapper.CourierMapper;
-import com.nikita.deliveryservice.model.dto.CourierDto;
-import com.nikita.deliveryservice.model.dto.CourierRequestDto;
+import com.nikita.deliveryservice.model.dto.courier.CourierDto;
+import com.nikita.deliveryservice.model.dto.courier.CourierRequestDto;
 import com.nikita.deliveryservice.model.entity.courier.CourierEntity;
 import com.nikita.deliveryservice.repository.CourierRepository;
 import lombok.RequiredArgsConstructor;

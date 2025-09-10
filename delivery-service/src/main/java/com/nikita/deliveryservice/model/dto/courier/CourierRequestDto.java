@@ -1,4 +1,4 @@
-package com.nikita.deliveryservice.model.dto;
+package com.nikita.deliveryservice.model.dto.courier;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

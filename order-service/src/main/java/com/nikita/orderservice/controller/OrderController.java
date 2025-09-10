@@ -25,6 +25,7 @@ public class OrderController {
 
     private final OrderService orderService;
 
+    //TODO MUST_DO Когда создаём заказ можно создавать сущность Delivery что бы заказ был создан но не назначен еще курьеру
     @PostMapping
     public ResponseEntity<OrderDto> createOrder(@RequestBody OrderRequestDto request){
         return orderService.createOrder(request);

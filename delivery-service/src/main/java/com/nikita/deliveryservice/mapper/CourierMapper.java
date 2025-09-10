@@ -1,7 +1,7 @@
 package com.nikita.deliveryservice.mapper;
 
-import com.nikita.deliveryservice.model.dto.CourierDto;
-import com.nikita.deliveryservice.model.dto.CourierRequestDto;
+import com.nikita.deliveryservice.model.dto.courier.CourierDto;
+import com.nikita.deliveryservice.model.dto.courier.CourierRequestDto;
 import com.nikita.deliveryservice.model.entity.courier.CourierEntity;
 
 public class CourierMapper {
