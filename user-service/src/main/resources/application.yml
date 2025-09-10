@@ -17,4 +17,4 @@ spring:
   h2:
     console:
       enabled: true
-      path: /users
+      path: /h2-user

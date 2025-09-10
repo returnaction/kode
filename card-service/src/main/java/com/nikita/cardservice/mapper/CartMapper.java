@@ -6,7 +6,7 @@ import com.nikita.cardservice.model.entity.CartEntity;
 import java.util.stream.Collectors;
 
 public class CartMapper {
-    public static CartEntity toEntity(CartDto dto) {
+    public static CartEntity toEntityWithItems(CartDto dto) {
         return CartEntity.builder()
                 .id(dto.getId() == null ? null : dto.getId())
                 .userId(dto.getUserId())
