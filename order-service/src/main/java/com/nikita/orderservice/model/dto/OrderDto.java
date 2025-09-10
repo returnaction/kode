@@ -15,11 +15,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class OrderResponseDto {
+public class OrderDto {
     private UUID orderId;
     private UUID userId;
     private String address;
     private Double amount;
     private Status status;
-    private List<OrderItemResponseDto> items;
+    private List<OrderItemDto> items;
 }

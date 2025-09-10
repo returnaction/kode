@@ -2,7 +2,7 @@ package com.nikita.orderservice.mapper;
 
 import com.nikita.orderservice.model.Status;
 import com.nikita.orderservice.model.dto.OrderRequestDto;
-import com.nikita.orderservice.model.dto.OrderResponseDto;
+import com.nikita.orderservice.model.dto.OrderDto;
 import com.nikita.orderservice.model.entity.OrderEntity;
 import com.nikita.orderservice.model.entity.OrderItemEntity;
 
@@ -26,8 +26,8 @@ public class OrderMapper {
         return order;
     }
 
-    public static OrderResponseDto toResponseDto(OrderEntity entity) {
-        return OrderResponseDto.builder()
+    public static OrderDto toResponseDto(OrderEntity entity) {
+        return OrderDto.builder()
                 .orderId(entity.getOrderId())
                 .userId(entity.getUserId())
                 .address(entity.getAddress())
