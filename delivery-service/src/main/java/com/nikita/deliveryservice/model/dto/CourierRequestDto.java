@@ -12,6 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 public class CourierRequestDto {
+    //  TODO добавь валидвацию
     private String name;
     private String email;
     private String phone;
