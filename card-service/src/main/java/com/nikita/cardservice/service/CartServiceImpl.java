@@ -26,7 +26,6 @@ public class CartServiceImpl {
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
-
     public ResponseEntity<CartDto> getCartByCartIdAndUserId(UUID cartId, UUID userId) {
         CartEntity cart = cartRepository.findById(cartId).orElseThrow(() ->
                 new ResponseStatusException(HttpStatus.NOT_FOUND, "Корзина не найдена"));

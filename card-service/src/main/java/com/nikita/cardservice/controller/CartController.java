@@ -21,7 +21,7 @@ public class CartController {
 
     private final CartServiceImpl cartService;
 
-    @PostMapping //TODO наверно надо все таки передавать userId в param? проверь позже
+    @PostMapping
     public ResponseEntity<CartDto> createCart(@RequestBody CartDto request){
         return cartService.createCart(request);
     }
@@ -35,6 +35,4 @@ public class CartController {
     public ResponseEntity<Void> deleteCartByCartId(@PathVariable UUID cartId, @PathVariable UUID userId){
         return cartService.deleteCart(cartId, userId);
     }
-
-    //TODO позже сделать изменения в корзине и + может получить корзины по userId
 }

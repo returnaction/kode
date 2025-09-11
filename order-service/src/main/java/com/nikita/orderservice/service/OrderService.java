@@ -25,6 +25,8 @@ public class OrderService {
 
     @Transactional
     public ResponseEntity<OrderDto> createOrder(OrderRequestDto request) {
+        if(!checkIfOrderMin300(request))
+            throw  new ResponseStatusException(HttpStatus.BAD_REQUEST, "Заказа должен быть минимум 300");
         OrderEntity entity = OrderMapper.toEntity(request);
         OrderEntity saved = orderRepository.save(entity);
         OrderDto responseDto = OrderMapper.toResponseDto(saved);
@@ -107,5 +109,9 @@ public class OrderService {
         OrderEntity saved = orderRepository.save(order);
         OrderDto responseDto = OrderMapper.toResponseDto(saved);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
+    }
+
+    private boolean checkIfOrderMin300(OrderRequestDto request) {
+        return request.getAmount() >= 300;
     }
 }
