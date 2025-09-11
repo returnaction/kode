@@ -9,23 +9,14 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
-        </processorPath>
-        <module name="user-service" />
-      </profile>
-      <profile name="Annotation profile for delivery-service" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
         </processorPath>
         <module name="delivery-service" />
         <module name="payment-service" />
-        <module name="order-service" />
-        <module name="card-service" />
         <module name="restaurant-service" />
         <module name="common-models" />
+        <module name="user-service" />
+        <module name="order-service" />
+        <module name="card-service" />
       </profile>
     </annotationProcessing>
   </component>
