@@ -1,5 +1,6 @@
 package com.nikita.userservice.controller;
 
+import com.nikita.commonmodels.DeliveryLocation;
 import com.nikita.userservice.model.dto.UserCreateRequestDto;
 import com.nikita.userservice.model.dto.UserDto;
 import com.nikita.userservice.model.dto.UserWithAddressesDto;
@@ -7,6 +8,7 @@ import com.nikita.userservice.service.impl.UserServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +26,7 @@ import java.util.UUID;
 public class UserController {
 
     private final UserServiceImpl userServiceImpl;
+    private final SimpMessagingTemplate template;
 
     @PostMapping
     public ResponseEntity<UserDto> registerUser(@RequestBody @Valid UserCreateRequestDto request) {
@@ -35,7 +38,6 @@ public class UserController {
         return userServiceImpl.getUserById(id);
     }
 
-    // TODO получить юзера по телефону???
 
     @GetMapping("/{id}/with-addresses")
     public ResponseEntity<UserWithAddressesDto> getUserByIdWithAddresses(@PathVariable UUID id) {
@@ -57,4 +59,10 @@ public class UserController {
         return userServiceImpl.updateUser(id, request);
     }
 
+    /// Локация
+    @PostMapping("/{userId}/delivery-location")
+    public void deliveryLocation(@PathVariable String userId, @RequestBody DeliveryLocation location) {
+        template.convertAndSend("/topic/delivery/" + userId, location);
+        System.out.println(location);
+    }
 }

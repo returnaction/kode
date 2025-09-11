@@ -3,10 +3,12 @@ package com.nikita.deliveryservice.service;
 import com.nikita.deliveryservice.mapper.DeliveryMapper;
 import com.nikita.deliveryservice.model.DeliveryStatus;
 import com.nikita.deliveryservice.model.dto.delivery.DeliveryDto;
+import com.nikita.deliveryservice.model.dto.delivery.DeliveryLocation;
 import com.nikita.deliveryservice.model.entity.courier.CourierEntity;
 import com.nikita.deliveryservice.model.entity.delivery.DeliveryEntity;
 import com.nikita.deliveryservice.repository.CourierRepository;
 import com.nikita.deliveryservice.repository.DeliveryRepository;
+import com.nikita.deliveryservice.service.client.UserServiceClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,7 @@ public class DeliveryService {
 
     private final DeliveryRepository deliveryRepository;
     private final CourierRepository courierRepository;
+    private final UserServiceClient userServiceClient;
 
     @Transactional
     public ResponseEntity<DeliveryDto> addDelivery(UUID orderId) {
@@ -72,5 +75,15 @@ public class DeliveryService {
     }
 
 
+    @Transactional
+    public ResponseEntity<Void> updateLocation(UUID deliveryId, DeliveryLocation location) {
+        DeliveryEntity entity = deliveryRepository.findById(deliveryId).orElseThrow(() ->
+                new RuntimeException("Доставка не найдена"));
 
+        entity.setCoordinateX(location.getCoordinateX());
+        entity.setCoordinateY(location.getCoordinateY());
+        deliveryRepository.save(entity);
+        userServiceClient.sendLocation(location);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
