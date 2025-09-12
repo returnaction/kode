@@ -1,0 +1,67 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-user-with-address3
+      author: nikita
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: "43333333-3333-3333-3333-333333333334"
+              - column:
+                  name: phone
+                  value: "+375291112235"
+              - column:
+                  name: password
+                  value: "secret2"
+              - column:
+                  name: firstname
+                  value: "Nikita2"
+              - column:
+                  name: email
+                  value: "nikita@yandex.by"
+              - column:
+                  name: lastname
+                  value: "Test2"
+              - column:
+                  name: created_at
+                  valueDate: "2025-09-12 19:50:00"
+              - column:
+                  name: update_at
+                  valueDate: "2025-09-12 19:50:00"
+
+        - insert:
+            tableName: user_addresses
+            columns:
+              - column:
+                  name: id
+                  valueComputed: "RANDOM_UUID()"
+              - column:
+                  name: city
+                  value: "Minsk"
+              - column:
+                  name: street
+                  value: "Asanalieva"
+              - column:
+                  name: house
+                  value: "28"
+              - column:
+                  name: apartment
+                  value: "15"
+              - column:
+                  name: created_at
+                  valueDate: "2025-09-12 19:50:00"
+              - column:
+                  name: updated_at
+                  valueDate: "2025-09-12 19:50:00"
+              - column:
+                  name: user_id
+                  value: "43333333-3333-3333-3333-333333333334"
+      rollback:
+        - delete:
+            tableName: user_addresses
+            where: "user_id='43333333-3333-3333-3333-333333333334'"
+        - delete:
+            tableName: users
+            where: "id='43333333-3333-3333-3333-333333333334'"
