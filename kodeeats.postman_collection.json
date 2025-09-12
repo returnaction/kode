@@ -1,0 +1,1455 @@
+{
+	"info": {
+		"_postman_id": "b49014db-6b92-4d2f-86ed-290f5b85f99d",
+		"name": "kodeeats",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28100906"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User Post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonDataUsers = pm.response.json();\r",
+									"pm.environment.set(\"userId\", jsonDataUsers.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\": \"+375296064176\",\r\n    \"password\": \"1234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\": \"+375296064176\",\r\n    \"password\": \"1234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users/{{userId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserByIdWithAddresses",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\": \"+375296064176\",\r\n    \"password\": \"1234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users/26f1c6c9-62b9-4008-88c6-af5404f13483/with-addresses",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"26f1c6c9-62b9-4008-88c6-af5404f13483",
+								"with-addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getUserByPhoneNumber",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\": \"+375296064176\",\r\n    \"password\": \"1234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users/by-phone/+375296064176",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"by-phone",
+								"+375296064176"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\": \"+375296064176\",\r\n    \"email\": \"nik@gmail.com\",\r\n    \"firstname\": \"nikita\",\r\n    \"lastname\": \"obergan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users/{{userId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users/{{userId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cancelOrder не работает ошибка в delivery-service",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users/{{userId}}/orders/{{orderId}}/cancel",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"{{userId}}",
+								"orders",
+								"{{orderId}}",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Restaurant",
+			"item": [
+				{
+					"name": "Menu",
+					"item": [
+						{
+							"name": "createMenu",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let jsonDataMenu = pm.response.json();\r",
+											"pm.environment.set(\"menuId\", jsonDataMenu.id);\r",
+											"pm.environment.set(\"menuName\", jsonDataMenu.name)\r",
+											"pm.environment.set(\"menuPrice\", jsonDataMenu.price);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"драники\",\r\n    \"price\": 150.09,\r\n    \"description\": \"Драники ленивые без мяса\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/restaurant/{{restaurantId}}/menu",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"restaurant",
+										"{{restaurantId}}",
+										"menu"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createMenu2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"let jsonDataMenu = pm.response.json();\r",
+											"pm.environment.set(\"menuId2\", jsonDataMenu.id);\r",
+											"pm.environment.set(\"menuName2\", jsonDataMenu.name)\r",
+											"pm.environment.set(\"menuPrice2\", jsonDataMenu.price);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"борщ\",\r\n    \"price\": 200.00,\r\n    \"description\": \"Борщ с пампушками\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/restaurant/{{restaurantId}}/menu",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"restaurant",
+										"{{restaurantId}}",
+										"menu"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getMenuById",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/restaurant/{{restaurantId}}/menu/{{menuId}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"restaurant",
+										"{{restaurantId}}",
+										"menu",
+										"{{menuId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteMenu",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8081/restaurant/{{restaurantId}}/menu/{{menuId}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"restaurant",
+										"{{restaurantId}}",
+										"menu",
+										"{{menuId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateMenu",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"драники Updated\",\r\n    \"price\": 7.09,\r\n    \"description\": \"Драники ленивые без мяса Updated\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8081/restaurant/{{restaurantId}}/menu/{{menuId}}",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"restaurant",
+										"{{restaurantId}}",
+										"menu",
+										"{{menuId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "createRestaurant",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonDataRestaurant = pm.response.json();\r",
+									"pm.environment.set(\"restaurantId\", jsonDataRestaurant.id);\r",
+									"pm.environment.set(\"restaurantName\", jsonDataRestaurant.name);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Вкусные пальчики\",\r\n    \"city\": \"Мниск\",\r\n    \"address\": \"Пушкина 28-35\",\r\n    \"phone\" : \"+375291342097\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/restaurant",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"restaurant"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRestaurantById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/restaurant/{{restaurantId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"restaurant",
+								"{{restaurantId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRestaurantByName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/restaurant/{{restaurantName}}/name",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"restaurant",
+								"{{restaurantName}}",
+								"name"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRestaurantByIdWithMenu",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/restaurant/{{restaurantId}}/with-menu",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"restaurant",
+								"{{restaurantId}}",
+								"with-menu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateRestaurant",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Вкусные пальчики Updated\",\r\n    \"city\": \"Мниск Updated\",\r\n    \"address\": \"Пушкина 28-35 Updated\",\r\n    \"phone\" : \"+375291342097 Updated\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/restaurant/{{restaurantId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"restaurant",
+								"{{restaurantId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteRestaurant",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/restaurant/{{restaurantId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"restaurant",
+								"{{restaurantId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "createCart",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonDataCart = pm.response.json();\r",
+									"pm.environment.set(\"cartId\", jsonDataCart.id);\r",
+									"pm.environment.set(\"totalPrice\", jsonDataCart.totalPrice);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"{{userId}}\",\r\n    \"restaurantId\": \"{{restaurantId}}\",\r\n    \"totalPrice\": 350.09,\r\n    \"items\":[ \r\n        {\r\n            \"menuId\": \"{{menuId}}\",\r\n            \"name\": \"{{menuName}}\",\r\n            \"price\": \"{{menuPrice}}\",\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"menuId\": \"{{menuId2}}\",\r\n            \"name\": \"{{menuName2}}\",\r\n            \"price\": {{menuPrice2}},\r\n            \"quantity\": 1\r\n        }\r\n    ]    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8082/carts",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCartByCartId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/carts/{{cartId}}/user/{{userId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"carts",
+								"{{cartId}}",
+								"user",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCartByCartId",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8082/carts/{{cartId}}/user/{{userId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"carts",
+								"{{cartId}}",
+								"user",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "createOrder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonDataOrder = pm.response.json();\r",
+									"pm.environment.set(\"orderId1\", jsonDataOrder.orderId);\r",
+									"pm.environment.set(\"orderItemId1-1\", jsonDataOrder.items[0].orderItemId);\r",
+									"pm.environment.set(\"orderItemId1-2\", jsonDataOrder.items[1].orderItemId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"{{userId}}\",\r\n    \"address\": \"Асаналиева 28-35\",\r\n    \"amount\": \"{{totalPrice}}\",\r\n    \"items\": \r\n    [\r\n        {\r\n            \"menuId\": \"{{menuId}}\",\r\n            \"name\": \"{{menuName}}\",\r\n            \"price\": \"{{menuPrice}}\",\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"menuId\": \"{{menuId2}}\",\r\n            \"name\": \"{{menuName2}}\",\r\n            \"price\": \"{{menuPrice2}}\",\r\n            \"quantity\": 1\r\n        }\r\n    ]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8083/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOrderById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8083/orders/{{orderId1}}/user/{{userId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"orders",
+								"{{orderId1}}",
+								"user",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteOrder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8083/orders/{{orderId1}}/user/{{userId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"orders",
+								"{{orderId1}}",
+								"user",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateOrder",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// let jsonDataOrder = pm.response.json();\r",
+									"// pm.environment.set(\"orderId1\", jsonDataOrder.orderId);\r",
+									"// pm.environment.set(\"orderItemId1-1\", jsonDataOrder.items[0].orderItemId);\r",
+									"// pm.environment.set(\"orderItemId1-2\", jsonDataOrder.items[1].orderItemId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"address\": \"Асаналиева 28-35 Updated\",\r\n    \"amount\": 25.09,\r\n    \"status\": \"NEW\",\r\n    \"items\": [\r\n        {\r\n            \"orderItemId\": \"c7d8088b-2813-4a73-a819-00a7e7285c35\",\r\n            \"menuId\": \"3e68b909-3161-4b91-9100-864591a5c8d5\",\r\n            \"name\": \"драники Updated\",\r\n            \"price\": 15.09,\r\n            \"quantity\": 1\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8083/orders/{{orderId1}}/user/{{userId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"orders",
+								"{{orderId1}}",
+								"user",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateOrderStatus",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// let jsonDataOrder = pm.response.json();\r",
+									"// pm.environment.set(\"orderId1\", jsonDataOrder.orderId);\r",
+									"// pm.environment.set(\"orderItemId1-1\", jsonDataOrder.items[0].orderItemId);\r",
+									"// pm.environment.set(\"orderItemId1-2\", jsonDataOrder.items[1].orderItemId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8083/orders/{{orderId1}}/user/{{userId}}/status?status=PENDING",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"orders",
+								"{{orderId1}}",
+								"user",
+								"{{userId}}",
+								"status"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "PENDING"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "createPayment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonDataPayment = pm.response.json();\r",
+									"pm.environment.set(\"paymentId\", jsonDataPayment.paymentId);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"{{userId}}\",\r\n    \"orderId\": \"{{orderId1}}\",\r\n    \"amount\": \"{{totalPrice}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8084/payment",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getPayment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8084/payment/{{paymentId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"payment",
+								"{{paymentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePaymentStatus",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8084/payment/{{paymentId}}/user/{{userId}}?status=CANCELLED",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"payment",
+								"{{paymentId}}",
+								"user",
+								"{{userId}}"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "CANCELLED"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Courier/Delivery",
+			"item": [
+				{
+					"name": "createCourier",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonDataCourier = pm.response.json();\r",
+									"pm.environment.set(\"courierId\", jsonDataCourier.courierId);\r",
+									"pm.environment.set(\"courierName\", jsonDataCourier.name);\r",
+									"pm.environment.set(\"courierPhone\", jsonDataCourier.phone);\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ваня\",\r\n    \"email\": \"ivan@yandex.ru\",\r\n    \"phone\": \"+375291342097\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8085/courier",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"courier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCourier",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonDataCourier = pm.response.json();\r",
+									"pm.environment.set(\"courierId\", jsonDataCourier.courierId);\r",
+									"pm.environment.set(\"courierName\", jsonDataCourier.name);\r",
+									"pm.environment.set(\"courierPhone\", jsonDataCourier.phone);\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ваня Updated\",\r\n    \"email\": \"ivan@yandex.ru\",\r\n    \"phone\": \"+375291342097\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8085/courier/{{courierId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"courier",
+								"{{courierId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCourier",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/courier/{{courierId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"courier",
+								"{{courierId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCourier",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/courier/{{courierId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"courier",
+								"{{courierId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addDelivery",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonDataDelivery = pm.response.json();\r",
+									"pm.environment.set(\"deliveryId\", jsonDataDelivery.deliveryId);\r",
+									"pm.environment.set(\"deliveryStatus\", jsonDataDelivery.status);\r",
+									"pm.environment.set(\"coordinateX\", jsonDataDelivery.coordinateX);\r",
+									"pm.environment.set(\"coordinateY\", jsonDataDelivery.coordinateY);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/delivery?orderId={{orderId1}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"delivery"
+							],
+							"query": [
+								{
+									"key": "orderId",
+									"value": "{{orderId1}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getDelivery",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/delivery/{{deliveryId}}",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"delivery",
+								"{{deliveryId}}"
+							],
+							"query": [
+								{
+									"key": "orderId",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assignCourier",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/delivery/{{deliveryId}}/courier/{{courierId}}/assign",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"delivery",
+								"{{deliveryId}}",
+								"courier",
+								"{{courierId}}",
+								"assign"
+							],
+							"query": [
+								{
+									"key": "orderId",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateLocation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"deliveryId\": \"{{deliveryId}}\",\r\n  \"userId\": \"{{userId}}\",\r\n  \"coordinateX\": 55.75,\r\n  \"coordinateY\": 37.61\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8085/delivery/{{deliveryId}}/location",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"delivery",
+								"{{deliveryId}}",
+								"location"
+							],
+							"query": [
+								{
+									"key": "orderId",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateDeliveryStatus IN_PROGRESS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/delivery/{{deliveryId}}/courier/{{courierId}}?status=PICKED_UP",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"delivery",
+								"{{deliveryId}}",
+								"courier",
+								"{{courierId}}"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "PICKED_UP"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateDeliveryStatus DELIVERD",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8085/delivery/{{deliveryId}}/courier/{{courierId}}?status=DELIVERED",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"delivery",
+								"{{deliveryId}}",
+								"courier",
+								"{{courierId}}"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "DELIVERED"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Flow",
+			"item": []
+		},
+		{
+			"name": "User Post Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonDataUsers = pm.response.json();\r",
+							"pm.environment.set(\"userId\", jsonDataUsers.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"phone\": \"+375296064176\",\r\n    \"password\": \"1234567\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createCourier Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonDataCourier = pm.response.json();\r",
+							"pm.environment.set(\"courierId\", jsonDataCourier.courierId);\r",
+							"pm.environment.set(\"courierName\", jsonDataCourier.name);\r",
+							"pm.environment.set(\"courierPhone\", jsonDataCourier.phone);\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Ваня\",\r\n    \"email\": \"ivan@yandex.ru\",\r\n    \"phone\": \"+375291342097\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8085/courier",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"courier"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
