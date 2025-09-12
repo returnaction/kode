@@ -1,6 +1,8 @@
 package com.nikita.userservice.controller;
 
 import com.nikita.commonmodels.DeliveryLocation;
+import com.nikita.commonmodels.OrderDto;
+import com.nikita.userservice.client.OrderServiceClient;
 import com.nikita.userservice.model.dto.UserCreateRequestDto;
 import com.nikita.userservice.model.dto.UserDto;
 import com.nikita.userservice.model.dto.UserWithAddressesDto;
@@ -27,6 +29,8 @@ public class UserController {
 
     private final UserServiceImpl userServiceImpl;
     private final SimpMessagingTemplate template;
+
+    private final OrderServiceClient orderServiceClient;
 
     @PostMapping
     public ResponseEntity<UserDto> registerUser(@RequestBody @Valid UserCreateRequestDto request) {
@@ -64,5 +68,14 @@ public class UserController {
     public void deliveryLocation(@PathVariable String userId, @RequestBody DeliveryLocation location) {
         template.convertAndSend("/topic/delivery/" + userId, location);
         System.out.println(location);
+    }
+
+    /// Cancel Order
+    @PutMapping("/{userId}/orders/{orderId}/cancel")
+    public ResponseEntity<OrderDto> cancelOrder(
+            @PathVariable("userId") UUID userId,
+            @PathVariable("orderId") UUID orderId
+    ) {
+        return orderServiceClient.cancelOrder(orderId, userId);
     }
 }

@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.UUID;
@@ -85,5 +86,24 @@ public class DeliveryService {
         deliveryRepository.save(entity);
         userServiceClient.sendLocation(location);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @Transactional
+    public ResponseEntity<Boolean> cancelDelivery(UUID deliveryId) {
+        DeliveryEntity entity = deliveryRepository.findById(deliveryId).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Доставка не найдена"));
+
+        if(entity.getStatus() == DeliveryStatus.IN_PROGRESS) {
+            entity.setStatus(DeliveryStatus.CANCELLED);
+            deliveryRepository.save(entity);
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(false, HttpStatus.OK);
+    }
+
+    @Transactional(readOnly = true)
+    public ResponseEntity<DeliveryDto> getDeliveryByOrderId( UUID orderId) {
+        DeliveryDto delivery = deliveryRepository.findByOrderId(orderId);
+        return new ResponseEntity<>(delivery, HttpStatus.OK);
     }
 }

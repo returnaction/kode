@@ -27,9 +27,6 @@ public class DeliveryController {
 
     private final DeliveryService deliveryService;
 
-    private final UserServiceClient userServiceClient;
-    private final DeliveryRepository deliveryRepository;
-
     @PostMapping
     public ResponseEntity<DeliveryDto> addDelivery(@RequestParam UUID orderId){
         return deliveryService.addDelivery(orderId);
@@ -53,11 +50,18 @@ public class DeliveryController {
         return deliveryService.updateDeliveryStatus(deliveryId, courierId, status);
     }
 
-    //TODO CompleteOrder
-    //TODO подумать как отправить координаты с помощью Scheduler может? Такую заглушку
-
     @PostMapping("/{deliveryId}/location")
     public ResponseEntity<Void> updateLocation(@PathVariable UUID deliveryId, @RequestBody DeliveryLocation location) {
         return deliveryService.updateLocation(deliveryId, location);
+    }
+
+    @PutMapping("/{deliveryId}/cancel")
+    public ResponseEntity<Boolean> cancelDelivery(@PathVariable UUID deliveryId ){
+        return deliveryService.cancelDelivery(deliveryId);
+    }
+
+    @GetMapping("/order/{orderId}")
+    public ResponseEntity<DeliveryDto> getDeliveryByOrderId(@PathVariable UUID orderId){
+        return deliveryService.getDeliveryByOrderId(orderId);
     }
 }

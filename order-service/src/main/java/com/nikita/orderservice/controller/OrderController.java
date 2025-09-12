@@ -50,4 +50,11 @@ public class OrderController {
     public ResponseEntity<OrderDto> updateOrderStatus(@PathVariable("orderId") UUID orderId, @PathVariable("userId") UUID userId, @RequestParam Status status){
         return orderService.updateOrderStatus(orderId, userId, status);
     }
+
+    @PutMapping("/{orderId}/user/{userId}/cancel")
+    public ResponseEntity<OrderDto> cancelOrder(@PathVariable("orderId") UUID orderId, @PathVariable("userId") UUID userId){
+        System.out.println("order-service контролер мать его!!!");
+        return orderService.cancelOrder(orderId, userId);
+    }
+
 }
